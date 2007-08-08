@@ -1,8 +1,16 @@
-%define libxp %mklibname xp 6
-Name: libxp
+%define name	libxp
+%define version	1.0.0
+%define release	%mkrel 4
+
+%define major		6
+%define libname		%mklibname xp %{major}
+%define develname	%mklibname xp -d
+%define staticname	%mklibname xp -d -s
+
+Name: %{name}
 Summary:  X Print Library
-Version: 1.0.0
-Release: %mkrel 3
+Version: %{version}
+Release: %{release}
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
@@ -21,52 +29,52 @@ non-display devices.
 
 #-----------------------------------------------------------
 
-%package -n %{libxp}
+%package -n %{libname}
 Summary:  X Print Library
 Group: Development/X11
 Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
-%description -n %{libxp}
+%description -n %{libname}
 libXp provides public APIs to allow client applications to render to 
 non-display devices.
 
 #-----------------------------------------------------------
 
-%package -n %{libxp}-devel
+%package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
-Requires: %{libxp} = %{version}
+Requires: %{libname} = %{version}
 Requires: x11-proto-devel >= 1.0.0
-
 Conflicts: libxorg-x11-devel < 7.0
-Provides: libxp-devel = %{version}-%{release}
+Provides: %{name}-devel = %{version}-%{release}
+Obsoletes: %{mklibname xp 6 -d}
 
-%description -n %{libxp}-devel
+%description -n %{develname}
 Development files for %{name}
 
-%files -n %{libxp}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libXp.so
 %{_libdir}/libXp.la
 %{_libdir}/pkgconfig/xp.pc
-%{_mandir}/man3/Xp*.3x.bz2
-%{_mandir}/man3/libXp.3x.bz2
+%{_mandir}/man3/Xp*.3*
+%{_mandir}/man3/libXp.3*
 
 #-----------------------------------------------------------
 
-%package -n %{libxp}-static-devel
+%package -n %{staticname}
 Summary: Static development files for %{name}
 Group: Development/X11
-Requires: %{libxp}-devel = %{version}
-Provides: libxp-static-devel = %{version}-%{release}
-
+Requires: %{develname} = %{version}
+Provides: %{name}-static-devel = %{version}-%{release}
 Conflicts: libxorg-x11-static-devel < 7.0
+Obsoletes: %{mklibname xp 6 -d -s}
 
-%description -n %{libxp}-static-devel
+%description -n %{staticname}
 Static development files for %{name}
 
-%files -n %{libxp}-static-devel
+%files -n %{staticname}
 %defattr(-,root,root)
 %{_libdir}/libXp.a
 
@@ -88,12 +96,10 @@ rm -rf %{buildroot}
 %clean
 rm -rf %{buildroot}
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{libxp}
+%files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/libXp.so.6
-%{_libdir}/libXp.so.6.2.0
-
+%{_libdir}/libXp.so.%{major}*
 
