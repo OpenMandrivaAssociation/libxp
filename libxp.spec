@@ -1,17 +1,13 @@
-%define name	libxp
-%define version	1.0.0
-%define release	%mkrel 9
-
 %define major		6
 %define libname		%mklibname xp %{major}
 %define develname	%mklibname xp -d
 %define staticname	%mklibname xp -d -s
 
-Name: %{name}
-Summary:  X Print Library
-Version: %{version}
-Release: %{release}
-Group: Development/X11
+Name:    libxp
+Summary: X Print Library
+Version: 1.0.1
+Release: %mkrel 1
+Group:   Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
 Source0: http://xorg.freedesktop.org/releases/individual/lib/libXp-%{version}.tar.bz2
@@ -24,7 +20,7 @@ BuildRequires: x11-proto-devel >= 1.0.0
 BuildRequires: x11-util-macros >= 1.0.1
 
 %description
-libXp provides public APIs to allow client applications to render to 
+libXp provides public APIs to allow client applications to render to
 non-display devices.
 
 #-----------------------------------------------------------
@@ -36,7 +32,7 @@ Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
 %description -n %{libname}
-libXp provides public APIs to allow client applications to render to 
+libXp provides public APIs to allow client applications to render to
 non-display devices.
 
 #-----------------------------------------------------------
@@ -84,9 +80,7 @@ Static development files for %{name}
 %setup -q -n libXp-%{version}
 
 %build
-%configure2_5x	--x-includes=%{_includedir}\
-		--x-libraries=%{_libdir}
-
+%configure2_5x
 %make
 
 %install
@@ -95,13 +89,6 @@ rm -rf %{buildroot}
 
 %clean
 rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %files -n %{libname}
 %defattr(-,root,root)
