@@ -6,7 +6,7 @@
 Name:    libxp
 Summary: X Print Library
 Version: 1.0.1
-Release: %mkrel 2
+Release: %mkrel 3
 Group:   Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
@@ -52,7 +52,6 @@ Development files for %{name}
 %files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libXp.so
-%{_libdir}/libXp.la
 %{_libdir}/pkgconfig/xp.pc
 %{_mandir}/man3/Xp*.3*
 %{_mandir}/man3/libXp.3*
@@ -72,7 +71,7 @@ Static development files for %{name}
 
 %files -n %{staticname}
 %defattr(-,root,root)
-%{_libdir}/libXp.a
+%{_libdir}/libXp.*a
 
 #-----------------------------------------------------------
 
