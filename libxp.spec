@@ -6,7 +6,7 @@
 Name:		libxp
 Summary:	X Print Library
 Version:	1.0.1
-Release:	4
+Release:	5
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
