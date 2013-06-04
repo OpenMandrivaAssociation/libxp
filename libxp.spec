@@ -1,12 +1,12 @@
-%define	major	6
-%define	libname	%mklibname xp %{major}
-%define	devname	%mklibname xp -d
-%define	static	%mklibname xp -d -s
+%define major 6
+%define libname %mklibname xp %{major}
+%define devname %mklibname xp -d
+%define static %mklibname xp -d -s
 
 Name:		libxp
 Summary:	X Print Library
-Version:	1.0.1
-Release:	5
+Version:	1.0.2
+Release:	1
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
@@ -22,8 +22,6 @@ BuildRequires:	x11-util-macros >= 1.0.1
 libXp provides public APIs to allow client applications to render to
 non-display devices.
 
-#-----------------------------------------------------------
-
 %package -n	%{libname}
 Summary:	X Print Library
 Group:		Development/X11
@@ -33,8 +31,6 @@ Provides:	%{name} = %{version}
 %description -n %{libname}
 libXp provides public APIs to allow client applications to render to
 non-display devices.
-
-#-----------------------------------------------------------
 
 %package -n	%{devname}
 Summary:	Development files for %{name}
@@ -46,15 +42,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{mklibname xp 6 -d}
 
 %description -n	%{devname}
-Development files for %{name}
-
-%files -n	%{devname}
-%{_libdir}/libXp.so
-%{_libdir}/pkgconfig/xp.pc
-%{_mandir}/man3/Xp*.3*
-%{_mandir}/man3/libXp.3*
-
-#-----------------------------------------------------------
+Development files for %{name}.
 
 %package -n	%{static}
 Summary:	Static development files for %{name}
@@ -65,12 +53,7 @@ Conflicts:	libxorg-x11-static-devel < 7.0
 Obsoletes:	%{mklibname xp 6 -d -s}
 
 %description -n	%{static}
-Static development files for %{name}
-
-%files -n	%{static}
-%{_libdir}/libXp.*a
-
-#-----------------------------------------------------------
+Static development files for %{name}.
 
 %prep
 %setup -q -n libXp-%{version}
@@ -84,6 +67,15 @@ Static development files for %{name}
 
 %files -n %{libname}
 %{_libdir}/libXp.so.%{major}*
+
+%files -n %{devname}
+%{_libdir}/libXp.so
+%{_libdir}/pkgconfig/xp.pc
+%{_mandir}/man3/Xp*.3*
+%{_mandir}/man3/libXp.3*
+
+%files -n %{static}
+%{_libdir}/libXp.*a
 
 %changelog
 * Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.1-2mdv2011.0
