@@ -5,8 +5,8 @@
 
 Name:		libxp
 Summary:	X Print Library
-Version:	1.0.2
-Release:	4
+Version:	1.0.3
+Release:	1
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
@@ -59,7 +59,7 @@ Static development files for %{name}.
 %setup -q -n libXp-%{version}
 
 %build
-%configure2_5x \
+%configure \
 		--enable-static
 
 %make
