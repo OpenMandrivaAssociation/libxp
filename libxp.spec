@@ -6,12 +6,12 @@
 Name:		libxp
 Summary:	X Print Library
 Version:	1.0.3
-Release:	3
+Release:	4
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
 Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXp-%{version}.tar.bz2
-
+Patch0:	0001-Fix-a-memory-leak-on-the-error-path-in-XpGetLocaleNe.patch
 BuildRequires:	pkgconfig(x11) >= 1.0.0
 BuildRequires:	pkgconfig(xau) >= 1.0.0
 BuildRequires:	pkgconfig(xext) >= 1.0.0
@@ -56,16 +56,16 @@ Obsoletes:	%{mklibname xp 6 -d -s}
 Static development files for %{name}.
 
 %prep
-%setup -q -n libXp-%{version}
+%autosetup -p1 -n libXp-%{version}
 
 %build
 %configure \
 		--enable-static
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files -n %{libname}
 %{_libdir}/libXp.so.%{major}*
