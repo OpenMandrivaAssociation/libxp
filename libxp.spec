@@ -5,13 +5,13 @@
 
 Name:		libxp
 Summary:	X Print Library
-Version:	1.0.3
-Release:	4
+Version:	1.0.4
+Release:	1
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXp-%{version}.tar.bz2
-Patch0:	0001-Fix-a-memory-leak-on-the-error-path-in-XpGetLocaleNe.patch
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXp-%{version}.tar.xz
+
 BuildRequires:	pkgconfig(x11) >= 1.0.0
 BuildRequires:	pkgconfig(xau) >= 1.0.0
 BuildRequires:	pkgconfig(xext) >= 1.0.0
