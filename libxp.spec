@@ -9,7 +9,7 @@ Version:	1.0.4
 Release:	2
 Group:		Development/X11
 License:	MIT
-URL:		http://xorg.freedesktop.org
+URL:		https://xorg.freedesktop.org
 Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXp-%{version}.tar.xz
 
 BuildRequires:	pkgconfig(x11) >= 1.0.0
